@@ -10,12 +10,13 @@
 		31324C838A089F74F35EE7A7 /* libPods-FlicksTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA3225549A30A4F529A7772 /* libPods-FlicksTests.a */; };
 		808D5B9A6F7E4FE827927D35 /* libPods-Flicks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BB9214DB5CD8A90D5E8DFF /* libPods-Flicks.a */; };
 		D73D0B1E1F69807F003FC093 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B1D1F69807F003FC093 /* AppDelegate.swift */; };
-		D73D0B201F69807F003FC093 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B1F1F69807F003FC093 /* ViewController.swift */; };
+		D73D0B201F69807F003FC093 /* FMNowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B1F1F69807F003FC093 /* FMNowPlayingViewController.swift */; };
 		D73D0B231F69807F003FC093 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73D0B211F69807F003FC093 /* Main.storyboard */; };
 		D73D0B251F69807F003FC093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D73D0B241F69807F003FC093 /* Assets.xcassets */; };
 		D73D0B281F69807F003FC093 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73D0B261F69807F003FC093 /* LaunchScreen.storyboard */; };
 		D73D0B331F698080003FC093 /* FlicksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B321F698080003FC093 /* FlicksTests.swift */; };
 		D73D0B3E1F698080003FC093 /* FlicksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B3D1F698080003FC093 /* FlicksUITests.swift */; };
+		D78B037A1F6A14E600F5163A /* FMTopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78B03791F6A14E600F5163A /* FMTopRatedViewController.swift */; };
 		E8F866624C1026696CB31AF8 /* libPods-FlicksUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A383BC8545CBA21B2FFEAB91 /* libPods-FlicksUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +47,7 @@
 		B3AB3E036605125A29914868 /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		D73D0B1A1F69807F003FC093 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73D0B1D1F69807F003FC093 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D73D0B1F1F69807F003FC093 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D73D0B1F1F69807F003FC093 /* FMNowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMNowPlayingViewController.swift; sourceTree = "<group>"; };
 		D73D0B221F69807F003FC093 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D73D0B241F69807F003FC093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D73D0B271F69807F003FC093 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		D73D0B391F698080003FC093 /* FlicksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlicksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73D0B3D1F698080003FC093 /* FlicksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlicksUITests.swift; sourceTree = "<group>"; };
 		D73D0B3F1F698080003FC093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D78B03791F6A14E600F5163A /* FMTopRatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMTopRatedViewController.swift; sourceTree = "<group>"; };
 		F26F7E5E6025A67A4028E76C /* Pods-FlicksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlicksTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlicksTests/Pods-FlicksTests.release.xcconfig"; sourceTree = "<group>"; };
 		FE3B4262AACD0935A68CFECE /* Pods-FlicksUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlicksUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlicksUITests/Pods-FlicksUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,7 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				D73D0B1D1F69807F003FC093 /* AppDelegate.swift */,
-				D73D0B1F1F69807F003FC093 /* ViewController.swift */,
+				D73D0B1F1F69807F003FC093 /* FMNowPlayingViewController.swift */,
+				D78B03791F6A14E600F5163A /* FMTopRatedViewController.swift */,
 				D73D0B211F69807F003FC093 /* Main.storyboard */,
 				D73D0B241F69807F003FC093 /* Assets.xcassets */,
 				D73D0B261F69807F003FC093 /* LaunchScreen.storyboard */,
@@ -443,7 +446,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D73D0B201F69807F003FC093 /* ViewController.swift in Sources */,
+				D78B037A1F6A14E600F5163A /* FMTopRatedViewController.swift in Sources */,
+				D73D0B201F69807F003FC093 /* FMNowPlayingViewController.swift in Sources */,
 				D73D0B1E1F69807F003FC093 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,6 +719,7 @@
 				D73D0B441F698080003FC093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D73D0B451F698080003FC093 /* Build configuration list for PBXNativeTarget "FlicksTests" */ = {
 			isa = XCConfigurationList;
@@ -723,6 +728,7 @@
 				D73D0B471F698080003FC093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D73D0B481F698080003FC093 /* Build configuration list for PBXNativeTarget "FlicksUITests" */ = {
 			isa = XCConfigurationList;
@@ -731,6 +737,7 @@
 				D73D0B4A1F698080003FC093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
