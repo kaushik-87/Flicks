@@ -29,7 +29,6 @@
                     <tabBarItem key="tabBarItem" title="Now Playing" id="dZp-vu-fdf"/>
                     <connections>
                         <outlet property="nowPlayingMoviesTableView" destination="TFR-Gb-FbB" id="nlw-9y-d5h"/>
-                        <outlet property="nowPlayingTableView" destination="TFR-Gb-FbB" id="6Nm-QH-D9c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -58,6 +57,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="kUY-Mp-MsP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Ia4-fV-8BM">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

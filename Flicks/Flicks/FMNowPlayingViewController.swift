@@ -14,6 +14,8 @@ class FMNowPlayingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let movieManager = MoviesManager.sharedManager
+        movieManager.fetchNowPlayingMovies()
     }
 
     override func didReceiveMemoryWarning() {
