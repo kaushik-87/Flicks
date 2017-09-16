@@ -19,6 +19,7 @@
 		D73D0B331F698080003FC093 /* FlicksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B321F698080003FC093 /* FlicksTests.swift */; };
 		D73D0B3E1F698080003FC093 /* FlicksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B3D1F698080003FC093 /* FlicksUITests.swift */; };
 		D754B1571F6B95D200372FA5 /* FMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D754B1561F6B95D200372FA5 /* FMConstants.swift */; };
+		D754B1591F6C290100372FA5 /* FMMovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D754B1581F6C290100372FA5 /* FMMovieDetailsViewController.swift */; };
 		D77893A61F6B6816006337F6 /* FMMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77893A51F6B6816006337F6 /* FMMovie.swift */; };
 		D77893A81F6B6E71006337F6 /* FMMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77893A71F6B6E71006337F6 /* FMMovieCell.swift */; };
 		D78B037A1F6A14E600F5163A /* FMTopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78B03791F6A14E600F5163A /* FMTopRatedViewController.swift */; };
@@ -63,6 +64,7 @@
 		D73D0B3D1F698080003FC093 /* FlicksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlicksUITests.swift; sourceTree = "<group>"; };
 		D73D0B3F1F698080003FC093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D754B1561F6B95D200372FA5 /* FMConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMConstants.swift; sourceTree = "<group>"; };
+		D754B1581F6C290100372FA5 /* FMMovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMMovieDetailsViewController.swift; sourceTree = "<group>"; };
 		D77893A51F6B6816006337F6 /* FMMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMMovie.swift; sourceTree = "<group>"; };
 		D77893A71F6B6E71006337F6 /* FMMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMMovieCell.swift; sourceTree = "<group>"; };
 		D78B03791F6A14E600F5163A /* FMTopRatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMTopRatedViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				D73D0B1D1F69807F003FC093 /* AppDelegate.swift */,
 				D73D0B1F1F69807F003FC093 /* FMNowPlayingViewController.swift */,
 				D78B03791F6A14E600F5163A /* FMTopRatedViewController.swift */,
+				D754B1581F6C290100372FA5 /* FMMovieDetailsViewController.swift */,
 				D70D2A4F1F6A542300D76F61 /* FMMoviesManager.swift */,
 				D77893A51F6B6816006337F6 /* FMMovie.swift */,
 				D754B1561F6B95D200372FA5 /* FMConstants.swift */,
@@ -459,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D754B1571F6B95D200372FA5 /* FMConstants.swift in Sources */,
+				D754B1591F6C290100372FA5 /* FMMovieDetailsViewController.swift in Sources */,
 				D70D2A501F6A542300D76F61 /* FMMoviesManager.swift in Sources */,
 				D78B037A1F6A14E600F5163A /* FMTopRatedViewController.swift in Sources */,
 				D77893A81F6B6E71006337F6 /* FMMovieCell.swift in Sources */,

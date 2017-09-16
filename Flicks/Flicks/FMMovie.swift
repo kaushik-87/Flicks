@@ -10,12 +10,15 @@ import UIKit
 import SwiftyJSON
 
 class FMMovie: NSObject {
-    var origTitle = ""
+    var origTitle:String?
     var overView = ""
     var title = ""
     var releaseDate = ""
     var posterPath = ""
     var backdropPath = ""
+    override init() {
+        
+    }
     init(withMovieDictionary dictionary : NSDictionary ) {
         
         let json = JSON(dictionary)
