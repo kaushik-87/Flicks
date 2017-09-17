@@ -16,6 +16,7 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
     var movies = [FMMovie]()
     var searchActive : Bool = false
     var filteredMovies = [FMMovie]()
+    let refreshControl = UIRefreshControl()
 
     
     override func viewDidLoad() {
@@ -31,16 +32,30 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
         //        textFieldInsideSearchBar?.backgroundColor = UIColor.white
         searchView.barTintColor = UIColor.white
         self.navigationItem.titleView = searchView
-        let movieManager = FMMoviesManager.sharedManager
-        self.nowPlayingMoviesTableView.rowHeight = 150
-        movieManager.fetchNowPlayingMovies { (movies, error) in
+
         
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        prepareData()
+        self.nowPlayingMoviesTableView.rowHeight = 150
+        self.nowPlayingMoviesTableView.insertSubview(refreshControl, at: 0)
+    }
+    
+    @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        prepareData()
+        
+    }
+    func prepareData()
+    {
+        let movieManager = FMMoviesManager.sharedManager
+        movieManager.fetchNowPlayingMovies { (movies, error) in
+            
             print(movies.count)
             if (error == nil){
                 self.movies = movies
                 self.nowPlayingMoviesTableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
-
+            
         }
     }
     
