@@ -78,10 +78,33 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="MGo-0a-GOb"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oN6-eY-9xR" userLabel="networkErrorView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="35"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtI-qc-lWf">
+                                        <rect key="frame" x="130" y="7" width="115" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="ALf-sC-9Pn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="MtI-qc-lWf" firstAttribute="centerX" secondItem="oN6-eY-9xR" secondAttribute="centerX" id="cEb-Rj-aVO"/>
+                                    <constraint firstAttribute="height" constant="35" id="j5y-Ev-c1u"/>
+                                    <constraint firstItem="MtI-qc-lWf" firstAttribute="centerY" secondItem="oN6-eY-9xR" secondAttribute="centerY" id="yPL-Ug-Tsd"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="oN6-eY-9xR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5EU-58-EwB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TFR-Gb-FbB" secondAttribute="trailing" id="8DT-Ao-jce"/>
+                            <constraint firstItem="oN6-eY-9xR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="D42-Rm-dxz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oN6-eY-9xR" secondAttribute="trailing" id="GNK-Gg-PJu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="TFR-Gb-FbB" secondAttribute="top" constant="64" id="Vzm-PI-V0I"/>
                             <constraint firstItem="TFR-Gb-FbB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YYB-qZ-5Es"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TFR-Gb-FbB" secondAttribute="bottom" id="xQM-AA-P63"/>
@@ -90,6 +113,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="OZX-nY-BJc"/>
                     <connections>
+                        <outlet property="networkErrorView" destination="oN6-eY-9xR" id="gPM-Ts-Mlz"/>
                         <outlet property="nowPlayingMoviesTableView" destination="TFR-Gb-FbB" id="nlw-9y-d5h"/>
                     </connections>
                 </viewController>

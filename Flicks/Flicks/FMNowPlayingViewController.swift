@@ -11,6 +11,7 @@ import AFNetworking
 import MBProgressHUD
 class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
+    @IBOutlet weak var networkErrorView: UIView!
     
     @IBOutlet weak var nowPlayingMoviesTableView: UITableView!
     
@@ -22,6 +23,7 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.networkErrorView.isHidden = true
         // Do any additional setup after loading the view, typically from a nib.
         let searchView: UISearchBar = UISearchBar.init(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: self.view.frame.size.width, height: 44 )))
         searchView.delegate = self
@@ -57,6 +59,8 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
                 self.nowPlayingMoviesTableView.reloadData()
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.refreshControl.endRefreshing()
+            }else{
+                self.networkErrorView.isHidden = false
             }
             
         }
