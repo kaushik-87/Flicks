@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kUY-Mp-MsP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zWx-mK-pCY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,16 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Now Playing View Controller-->
+        <!--Movies View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FMNowPlayingViewController" customModule="Flicks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="FMMoviesViewController" customModule="Flicks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TFR-Gb-FbB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="125" id="jyU-hj-uvf" customClass="FMMovieCell" customModule="Flicks" customModuleProvider="target">
@@ -130,10 +130,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kF9-9r-puN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="716"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C04-NF-T7i">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C04-NF-T7i">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7QD-xb-bw8">
                                         <rect key="frame" x="8" y="482" width="359" height="136"/>
@@ -217,7 +217,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="C04-NF-T7i" secondAttribute="trailing" constant="-16" id="IVV-VA-BpQ"/>
                             <constraint firstItem="kF9-9r-puN" firstAttribute="leading" secondItem="hB5-P9-a6m" secondAttribute="leading" id="cLc-fY-dUl"/>
                             <constraint firstAttribute="bottomMargin" secondItem="C04-NF-T7i" secondAttribute="bottom" id="f34-qG-h0q"/>
-                            <constraint firstItem="kF9-9r-puN" firstAttribute="height" secondItem="QX9-Sf-EUH" secondAttribute="height" id="i9L-oI-5RJ"/>
                             <constraint firstItem="kF9-9r-puN" firstAttribute="bottom" secondItem="hB5-P9-a6m" secondAttribute="bottom" constant="49" id="kpl-q2-Oyz"/>
                             <constraint firstItem="kF9-9r-puN" firstAttribute="width" secondItem="QX9-Sf-EUH" secondAttribute="width" id="vOn-Jk-uAY"/>
                             <constraint firstItem="hB5-P9-a6m" firstAttribute="top" secondItem="kF9-9r-puN" secondAttribute="top" constant="64" id="xwq-WY-W9H"/>
@@ -255,29 +254,11 @@
             </objects>
             <point key="canvasLocation" x="2015" y="265"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="Qb5-ji-kJG">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="kUY-Mp-MsP" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Ia4-fV-8BM">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="zWx-mK-pCY" kind="relationship" relationship="viewControllers" id="lqu-py-4ST"/>
-                        <segue destination="Ln1-iJ-qxV" kind="relationship" relationship="viewControllers" id="pLU-lB-yfi"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AqL-H7-PzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1642" y="365"/>
-        </scene>
         <!--Now Playing-->
         <scene sceneID="tho-fn-2Yq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zWx-mK-pCY" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z5f-Bg-Qfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="MoviesNavController" automaticallyAdjustsScrollViewInsets="NO" id="zWx-mK-pCY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Now Playing" id="dZp-vu-fdf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8x5-71-hqz">
@@ -289,7 +270,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="NoN-cR-3Y6"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z5f-Bg-Qfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="89" y="-296"/>
         </scene>

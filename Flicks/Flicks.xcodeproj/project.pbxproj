@@ -12,7 +12,7 @@
 		B794BA07EEF2663BB9108E2C /* Pods_FlicksUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5258567C9988E03FE3C77BD7 /* Pods_FlicksUITests.framework */; };
 		D70D2A501F6A542300D76F61 /* FMMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70D2A4F1F6A542300D76F61 /* FMMoviesManager.swift */; };
 		D73D0B1E1F69807F003FC093 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B1D1F69807F003FC093 /* AppDelegate.swift */; };
-		D73D0B201F69807F003FC093 /* FMNowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B1F1F69807F003FC093 /* FMNowPlayingViewController.swift */; };
+		D73D0B201F69807F003FC093 /* FMMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73D0B1F1F69807F003FC093 /* FMMoviesViewController.swift */; };
 		D73D0B231F69807F003FC093 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73D0B211F69807F003FC093 /* Main.storyboard */; };
 		D73D0B251F69807F003FC093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D73D0B241F69807F003FC093 /* Assets.xcassets */; };
 		D73D0B281F69807F003FC093 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73D0B261F69807F003FC093 /* LaunchScreen.storyboard */; };
@@ -52,7 +52,7 @@
 		D70D2A4F1F6A542300D76F61 /* FMMoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMMoviesManager.swift; sourceTree = "<group>"; };
 		D73D0B1A1F69807F003FC093 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73D0B1D1F69807F003FC093 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D73D0B1F1F69807F003FC093 /* FMNowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMNowPlayingViewController.swift; sourceTree = "<group>"; };
+		D73D0B1F1F69807F003FC093 /* FMMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMMoviesViewController.swift; sourceTree = "<group>"; };
 		D73D0B221F69807F003FC093 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D73D0B241F69807F003FC093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D73D0B271F69807F003FC093 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				D73D0B1D1F69807F003FC093 /* AppDelegate.swift */,
-				D73D0B1F1F69807F003FC093 /* FMNowPlayingViewController.swift */,
+				D73D0B1F1F69807F003FC093 /* FMMoviesViewController.swift */,
 				D78B03791F6A14E600F5163A /* FMTopRatedViewController.swift */,
 				D754B1581F6C290100372FA5 /* FMMovieDetailsViewController.swift */,
 				D70D2A4F1F6A542300D76F61 /* FMMoviesManager.swift */,
@@ -466,7 +466,7 @@
 				D70D2A501F6A542300D76F61 /* FMMoviesManager.swift in Sources */,
 				D78B037A1F6A14E600F5163A /* FMTopRatedViewController.swift in Sources */,
 				D77893A81F6B6E71006337F6 /* FMMovieCell.swift in Sources */,
-				D73D0B201F69807F003FC093 /* FMNowPlayingViewController.swift in Sources */,
+				D73D0B201F69807F003FC093 /* FMMoviesViewController.swift in Sources */,
 				D73D0B1E1F69807F003FC093 /* AppDelegate.swift in Sources */,
 				D77893A61F6B6816006337F6 /* FMMovie.swift in Sources */,
 			);

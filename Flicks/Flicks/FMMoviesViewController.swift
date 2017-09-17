@@ -9,12 +9,13 @@
 import UIKit
 import AFNetworking
 import MBProgressHUD
-class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var networkErrorView: UIView!
     
     @IBOutlet weak var nowPlayingMoviesTableView: UITableView!
     
+    var isNowPlaying: Bool = true
     var movies = [FMMovie]()
     var searchActive : Bool = false
     var filteredMovies = [FMMovie]()
@@ -36,7 +37,7 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
         searchView.barTintColor = UIColor.white
         self.navigationItem.titleView = searchView
 
-        
+        refreshControl.backgroundColor = UIColor.clear
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         prepareData()
         self.nowPlayingMoviesTableView.rowHeight = 150
@@ -51,19 +52,37 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
     {
         let movieManager = FMMoviesManager.sharedManager
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        movieManager.fetchNowPlayingMovies { (movies, error) in
-            
-            print(movies.count)
-            if (error == nil){
-                self.movies = movies
-                self.nowPlayingMoviesTableView.reloadData()
-                MBProgressHUD.hide(for: self.view, animated: true)
-                self.refreshControl.endRefreshing()
-            }else{
-                self.networkErrorView.isHidden = false
+        if isNowPlaying {
+            movieManager.fetchNowPlayingMovies { (movies, error) in
+                
+                print(movies.count)
+                if (error == nil){
+                    self.movies = movies
+                    self.nowPlayingMoviesTableView.reloadData()
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.refreshControl.endRefreshing()
+                }else{
+                    self.networkErrorView.isHidden = false
+                }
+                
             }
-            
         }
+        else {
+            movieManager.fetchTopRatedMovies { (movies, error) in
+                
+                print(movies.count)
+                if (error == nil){
+                    self.movies = movies
+                    self.nowPlayingMoviesTableView.reloadData()
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.refreshControl.endRefreshing()
+                }else{
+                    self.networkErrorView.isHidden = false
+                }
+                
+            }
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
