@@ -14,10 +14,23 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var nowPlayingMoviesTableView: UITableView!
     
     var movies = [FMMovie]()
+    var searchActive : Bool = false
+    var filteredMovies = [FMMovie]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let searchView: UISearchBar = UISearchBar.init(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: self.view.frame.size.width, height: 44 )))
+        searchView.delegate = self
+        //        searchView.tintColor = UIColor.clear
+        
+        //        searchView.searchBarStyle = UISearchBarStyle.prominent
+        //       searchView.isTranslucent = false
+        //        let textFieldInsideSearchBar = searchView.value(forKey: "searchField") as? UITextField
+        //        textFieldInsideSearchBar?.backgroundColor = UIColor.white
+        searchView.barTintColor = UIColor.white
+        self.navigationItem.titleView = searchView
         let movieManager = FMMoviesManager.sharedManager
         self.nowPlayingMoviesTableView.rowHeight = 150
         movieManager.fetchNowPlayingMovies { (movies, error) in
@@ -33,16 +46,6 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let searchView: UISearchBar = UISearchBar.init(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: self.view.frame.size.width, height: 44 )))
-        searchView.delegate = self
-//        searchView.tintColor = UIColor.clear
-        
-//        searchView.searchBarStyle = UISearchBarStyle.prominent
-//       searchView.isTranslucent = false
-//        let textFieldInsideSearchBar = searchView.value(forKey: "searchField") as? UITextField
-//        textFieldInsideSearchBar?.backgroundColor = UIColor.white
-        searchView.barTintColor = UIColor.white
-        self.navigationItem.titleView = searchView
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,13 +55,22 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchActive {
+            return self.filteredMovies.count
+        }
         return self.movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell") as! FMMovieCell
         print(self.movies[indexPath.row].title)
-        let movie =  self.movies[indexPath.row]
+        var movie = FMMovie.init()
+        if searchActive {
+            movie = self.filteredMovies[indexPath.row]
+        }
+        else{
+            movie =  self.movies[indexPath.row]
+        }
         cell.movieTitle.text = movie.title
         cell.overviewTextView.text = movie.overView
         print(movie.posterPath)
@@ -77,7 +89,16 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
             
             let vc = segue.destination as! FMMovieDetailsViewController
             if let cell = sender as? FMMovieCell{
-                vc.loadDetails(movie: self.movies[(self.nowPlayingMoviesTableView.indexPath(for: cell)?.row)!])
+                var selectedMovie = FMMovie.init()
+                if searchActive {
+                    selectedMovie = self.filteredMovies[(self.nowPlayingMoviesTableView.indexPath(for: cell)?.row)!]
+                }
+                else{
+                    selectedMovie = self.movies[(self.nowPlayingMoviesTableView.indexPath(for: cell)?.row)!]
+
+                }
+                
+                vc.loadDetails(movie: selectedMovie)
             }
             
             
@@ -89,6 +110,13 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
         return true
     }
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {// called when text starts editing
+        if (searchBar.text != "") {
+            searchActive = true;
+        }
+        else{
+            searchActive = false
+            self.nowPlayingMoviesTableView.reloadData()
+        }
         
     }
         
@@ -100,9 +128,41 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
     
     public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         // called when text ends editing
+        //searchActive = false;
+
     }
 
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {// called when text changes (including clear)
+        
+        self.filteredMovies = self.movies.filter({ (searchedmovie :FMMovie) -> Bool in
+//            let tmpTitle: String = searchedmovie.origTitle ?? ""
+//            let range = tmpTitle.range(of: searchText, options: String.CompareOptions.caseInsensitive)
+            
+            return (searchedmovie.origTitle?.contains(searchText))!
+        })
+//            data.filter({ (text) -> Bool in
+//            let tmp: NSString = text
+//            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+//            return range.location != NSNotFound
+//        })
+//        if(self.filteredMovies.count == 0){
+//            searchActive = false;
+//        } else {
+//            searchActive = true;
+//        }
+        
+        if (searchBar.text == "") {
+            searchActive = false
+            self.nowPlayingMoviesTableView.reloadData()
+            return
+        }
+        
+        searchActive = true
+        print(self.filteredMovies.count)
+        
+        self.nowPlayingMoviesTableView.reloadData()
+        
+        
     }
     
     public func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{ // called before text changes
@@ -111,6 +171,7 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
     
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {// called when keyboard search button pressed
         searchBar.showsCancelButton = false
+        searchActive = false;
         searchBar.text = ""
         searchBar.resignFirstResponder()
 
@@ -118,8 +179,10 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
 
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {// called when cancel button pressed
         searchBar.showsCancelButton = false
+        searchActive = false;
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        self.nowPlayingMoviesTableView.reloadData()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
