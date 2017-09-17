@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     
@@ -47,12 +48,14 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
     func prepareData()
     {
         let movieManager = FMMoviesManager.sharedManager
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         movieManager.fetchNowPlayingMovies { (movies, error) in
             
             print(movies.count)
             if (error == nil){
                 self.movies = movies
                 self.nowPlayingMoviesTableView.reloadData()
+                MBProgressHUD.hide(for: self.view, animated: true)
                 self.refreshControl.endRefreshing()
             }
             
