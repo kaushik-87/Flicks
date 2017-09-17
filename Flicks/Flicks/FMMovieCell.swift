@@ -11,7 +11,7 @@ import UIKit
 class FMMovieCell: UITableViewCell {
 
     @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var overviewTextView: UITextView!
+    @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     override func awakeFromNib() {
 

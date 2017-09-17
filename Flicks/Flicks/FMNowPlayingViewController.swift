@@ -90,9 +90,9 @@ class FMNowPlayingViewController: UIViewController, UITableViewDelegate, UITable
             movie =  self.movies[indexPath.row]
         }
         cell.movieTitle.text = movie.title
-        cell.overviewTextView.text = movie.overView
+        cell.overviewLabel.text = movie.overView
         print(movie.posterPath)
-        if let imgURL = NSURL(string:"http://image.tmdb.org/t/p/w92\(movie.posterPath)")
+        if let imgURL = NSURL(string:"http://image.tmdb.org/t/p/w500\(movie.posterPath)")
         {
             print(imgURL)
             cell.posterImageView.setImageWith(imgURL as URL)
