@@ -46,7 +46,7 @@ class FMMoviesManager: NSObject {
         });
         task.resume()
     }
-    func fetchNowPlayingMovies(completionHandler :  @escaping (_ movies : [FMMovie], NSError?)->Void){
+    func fetchNowPlayingMovies(completionHandler :  @escaping (_ movies : [FMMovie]?, NSError?)->Void){
         let moviesList = NSMutableArray.init()
         let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=39c77c9745fd06851e28fcf94062eeb2")
         let request = URLRequest(url: url!)
@@ -69,22 +69,25 @@ class FMMoviesManager: NSObject {
                                 let mov = FMMovie.init(withMovieDictionary: movieDictionary)
                                 moviesList.add(mov)
                             }
-                            completionHandler(moviesList as! [FMMovie], nil)
+                            completionHandler(moviesList as? [FMMovie], nil)
                         }
                         else
                         {
-                            
+                            let error = NSError(domain: "kFMMovieErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Error fetching the details from the server"])
+                            completionHandler(nil, error)
+
                         }
                         print("responseDictionary: \(moviesList)")
                     }
                 }else{
-                    
+                    let error = NSError(domain: "kFMMovieErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Error fetching the details from the server"])
+                    completionHandler(nil, error)
                 }
         });
         task.resume()
     }
     
-    func fetchTopRatedMovies(completionHandler :  @escaping (_ movies : [FMMovie], NSError?)->Void){
+    func fetchTopRatedMovies(completionHandler :  @escaping (_ movies : [FMMovie]?, NSError?)->Void){
         let moviesList = NSMutableArray.init()
         let url = URL(string:"https://api.themoviedb.org/3/movie/top_rated?api_key=39c77c9745fd06851e28fcf94062eeb2")
         let request = URLRequest(url: url!)
@@ -107,16 +110,18 @@ class FMMoviesManager: NSObject {
                                 let mov = FMMovie.init(withMovieDictionary: movieDictionary)
                                 moviesList.add(mov)
                             }
-                            completionHandler(moviesList as! [FMMovie], nil)
+                            completionHandler(moviesList as? [FMMovie], nil)
                         }
                         else
                         {
-                            
+                            let error = NSError(domain: "kFMMovieErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Error fetching the details from the server"])
+                            completionHandler(nil, error)
                         }
                         print("responseDictionary: \(moviesList)")
                     }
                 }else{
-                    
+                    let error = NSError(domain: "kFMMovieErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Error fetching the details from the server"])
+                    completionHandler(nil, error)
                 }
         });
         task.resume()

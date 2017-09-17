@@ -55,14 +55,15 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
         if isNowPlaying {
             movieManager.fetchNowPlayingMovies { (movies, error) in
                 
-                print(movies.count)
                 if (error == nil){
-                    self.movies = movies
+                    self.movies = movies!
                     self.nowPlayingMoviesTableView.reloadData()
                     MBProgressHUD.hide(for: self.view, animated: true)
                     self.refreshControl.endRefreshing()
                 }else{
                     self.networkErrorView.isHidden = false
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.refreshControl.endRefreshing()
                 }
                 
             }
@@ -70,14 +71,16 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             movieManager.fetchTopRatedMovies { (movies, error) in
                 
-                print(movies.count)
                 if (error == nil){
-                    self.movies = movies
+                    self.movies = movies!
                     self.nowPlayingMoviesTableView.reloadData()
                     MBProgressHUD.hide(for: self.view, animated: true)
                     self.refreshControl.endRefreshing()
                 }else{
                     self.networkErrorView.isHidden = false
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.refreshControl.endRefreshing()
+
                 }
                 
             }
