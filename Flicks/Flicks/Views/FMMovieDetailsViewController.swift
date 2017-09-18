@@ -64,7 +64,7 @@ class FMMovieDetailsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if let backDropPath =  self.movie?.backdropPath{
-            let imgURL = NSURL(string:"http://image.tmdb.org/t/p/w500\(backDropPath)")
+            let imgURL = NSURL(string:"http://image.tmdb.org/t/p/original\(backDropPath)")
             self.backDropImageView.setImageWith(imgURL! as URL)
         }
     }
