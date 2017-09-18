@@ -30,7 +30,7 @@ Added Autolayout for all the screens, maintained separated Model class for Movie
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/w12gfPD.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/utQaSkv.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
