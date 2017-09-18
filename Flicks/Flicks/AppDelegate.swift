@@ -16,29 +16,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        let manager = FMMoviesManager.sharedManager
-//        manager.fetchConfigurations()
+        let manager = FMMoviesManager.sharedManager
+        manager.fetchConfigurations()
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nowPlayingNavController:UINavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavController") as! UINavigationController
         let nowPlayingViewController = nowPlayingNavController.topViewController as! FMMoviesViewController
         nowPlayingViewController.isNowPlaying = true
+        nowPlayingNavController.navigationBar.barTintColor = UIColor(red:0.94, green:0.71, blue:0.25, alpha:1.0)
+        nowPlayingNavController.navigationBar.isTranslucent = false
         nowPlayingNavController.tabBarItem.title = "Now Playing"
         nowPlayingNavController.tabBarItem.image = UIImage.init(named: "nowPlaying")
         nowPlayingNavController.tabBarItem.badgeColor = UIColor.black
+           //UIColor(red:0.94, green:0.71, blue:0.25, alpha:1.0)
+
         
         let topRatedNavController:UINavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavController") as! UINavigationController
         let topRatedViewController = topRatedNavController.topViewController as! FMMoviesViewController
         topRatedViewController.isNowPlaying = false
+        topRatedNavController.navigationBar.barTintColor = UIColor(red:0.94, green:0.71, blue:0.25, alpha:1.0)
+        topRatedNavController.navigationBar.isTranslucent = false
         topRatedNavController.tabBarItem.title = "Top Rated"
         topRatedNavController.tabBarItem.image = UIImage.init(named: "topRated")
         topRatedNavController.tabBarItem.badgeColor = UIColor.black
+            //UIColor(red:0.94, green:0.71, blue:0.25, alpha:1.0)
 
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [nowPlayingNavController, topRatedNavController]
         tabBarController.tabBar.tintColor = UIColor.black
+        tabBarController.tabBar.barTintColor = UIColor(red:0.94, green:0.71, blue:0.25, alpha:1.0)
+        tabBarController.tabBar.isTranslucent = false
         window?.rootViewController = tabBarController
         window?.becomeKey()
         return true
