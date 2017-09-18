@@ -10,41 +10,11 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,  UICollectionViewDataSource, UICollectionViewDelegate {
-    @IBOutlet weak var moviesCollectionView: UICollectionView!
-    @IBAction func segmentControlAction(_ sender: Any) {
-        let segmentControl = sender as! UISegmentedControl
-        switch segmentControl.selectedSegmentIndex {
-        case 1:
-            // load collection view to show grid view
-            showListView(show: false)
-            break
-            
-        default:
-                //  load table view to show list view
-            showListView(show: true)
-
-        }
-    }
-    
-    func showListView(show : Bool) -> Void{
-        if show {
-            self.moviesCollectionView.isHidden = true
-            self.moviesTableView.isHidden = false
-            self.moviesTableView.insertSubview(refreshControl, at: 0)
-
-            return
-        }
-        self.moviesCollectionView.isHidden = false
-        self.moviesTableView.isHidden = true
-        self.moviesCollectionView.insertSubview(collectionViewRefreshControl, at: 0)
-
-    }
     
     @IBOutlet weak var viewSelectionSegmentControl: UISegmentedControl!
     @IBOutlet weak var networkErrorView: UIView!
-    
     @IBOutlet weak var moviesTableView: UITableView!
-    
+    @IBOutlet weak var moviesCollectionView: UICollectionView!
     var isNowPlaying: Bool = true
     var movies = [FMMovie]()
     var searchActive : Bool = false
@@ -52,7 +22,9 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
     let refreshControl = UIRefreshControl()
     let collectionViewRefreshControl = UIRefreshControl()
 
-    
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.networkErrorView.isHidden = true
@@ -61,13 +33,6 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view, typically from a nib.
         let searchView: UISearchBar = UISearchBar.init(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: (self.navigationController?.navigationBar.frame.size.width)! + 40, height: 44 )))
         searchView.delegate = self
-        //        searchView.tintColor = UIColor.clear
-        
-        //        searchView.searchBarStyle = UISearchBarStyle.prominent
-        //       searchView.isTranslucent = false
-        //        let textFieldInsideSearchBar = searchView.value(forKey: "searchField") as? UITextField
-        //        textFieldInsideSearchBar?.backgroundColor = UIColor.white
-        
         searchView.barTintColor = UIColor(red:0.94, green:0.71, blue:0.25, alpha:1.0)
         self.navigationItem.titleView = searchView
 
@@ -80,17 +45,40 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
         self.moviesTableView.rowHeight = 150
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexpath = self.moviesTableView.indexPathForSelectedRow {
+            self.moviesTableView.deselectRow(at: indexpath, animated: false)
+            
+        }
+    }
+    
+    @IBAction func segmentControlAction(_ sender: Any) {
+        let segmentControl = sender as! UISegmentedControl
+        switch segmentControl.selectedSegmentIndex {
+        case 1:
+            // load collection view to show grid view
+            showListView(show: false)
+            break
+            
+        default:
+            //  load table view to show list view
+            showListView(show: true)
+            
+        }
+    }
+    
     @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
         prepareData()
         
     }
+    
     func prepareData()
     {
         let movieManager = FMMoviesManager.sharedManager
         MBProgressHUD.showAdded(to: self.view, animated: true)
         if isNowPlaying {
             movieManager.fetchNowPlayingMovies { (movies, error) in
-                
                 if (error == nil){
                     self.movies = movies!
                     self.moviesTableView.reloadData()
@@ -104,12 +92,10 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
                     self.refreshControl.endRefreshing()
                     self.collectionViewRefreshControl.endRefreshing()
                 }
-                
             }
         }
         else {
             movieManager.fetchTopRatedMovies { (movies, error) in
-                
                 if (error == nil){
                     self.movies = movies!
                     self.moviesTableView.reloadData()
@@ -122,20 +108,23 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
                     MBProgressHUD.hide(for: self.view, animated: true)
                     self.refreshControl.endRefreshing()
                     self.collectionViewRefreshControl.endRefreshing()
-
                 }
-                
             }
         }
-
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let indexpath = self.moviesTableView.indexPathForSelectedRow {
-            self.moviesTableView.deselectRow(at: indexpath, animated: false)
 
+    func showListView(show : Bool) -> Void{
+        if show {
+            self.moviesCollectionView.isHidden = true
+            self.moviesTableView.isHidden = false
+            self.moviesTableView.insertSubview(refreshControl, at: 0)
+            
+            return
         }
+        self.moviesCollectionView.isHidden = false
+        self.moviesTableView.isHidden = true
+        self.moviesCollectionView.insertSubview(collectionViewRefreshControl, at: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -143,6 +132,8 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
 
+    
+    // Tableview delegate and data source methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchActive {
@@ -153,7 +144,6 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell") as! FMMovieCell
-        print(self.movies[indexPath.row].title)
         var movie = FMMovie.init()
         if searchActive {
             movie = self.filteredMovies[indexPath.row]
@@ -173,6 +163,8 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    
+    // Collectionview delegate and datasource methods
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int{
         if searchActive {
@@ -185,7 +177,6 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
     internal func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionViewCell", for: indexPath) as! FMMovieCollectionViewCell
-        print(self.movies[indexPath.row].title)
         var movie = FMMovie.init()
         if searchActive {
             movie = self.filteredMovies[indexPath.row]
@@ -205,6 +196,8 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    // override segue method to pass the movie object to detail view controller
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print(segue)
         if(segue.identifier == "MovieDetails") {
@@ -217,9 +210,7 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 else{
                     selectedMovie = self.movies[(self.moviesTableView.indexPath(for: cell)?.row)!]
-
                 }
-                
                 vc.loadDetails(movie: selectedMovie)
             }
             else if let cell = sender as? FMMovieCollectionViewCell{
@@ -229,16 +220,13 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 else{
                     selectedMovie = self.movies[(self.moviesCollectionView.indexPath(for: cell)?.row)!]
-                    
                 }
-                
                 vc.loadDetails(movie: selectedMovie)
             }
-            
-            
         }
     }
     
+    //Search bar delegate method.
     public func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.showsCancelButton = true
         return true
@@ -270,21 +258,8 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {// called when text changes (including clear)
         
         self.filteredMovies = self.movies.filter({ (searchedmovie :FMMovie) -> Bool in
-//            let tmpTitle: String = searchedmovie.origTitle ?? ""
-//            let range = tmpTitle.range(of: searchText, options: String.CompareOptions.caseInsensitive)
-            
             return (searchedmovie.origTitle?.contains(searchText))!
         })
-//            data.filter({ (text) -> Bool in
-//            let tmp: NSString = text
-//            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
-//            return range.location != NSNotFound
-//        })
-//        if(self.filteredMovies.count == 0){
-//            searchActive = false;
-//        } else {
-//            searchActive = true;
-//        }
         
         if (searchBar.text == "") {
             searchActive = false
@@ -327,9 +302,7 @@ class FMMoviesViewController: UIViewController, UITableViewDelegate, UITableView
         let searchBar = self.navigationItem.titleView as? UISearchBar
         searchBar?.showsCancelButton = false
         searchBar?.resignFirstResponder()
-        
     }
-
 
 }
 

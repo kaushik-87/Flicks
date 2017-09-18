@@ -318,22 +318,6 @@
             </objects>
             <point key="canvasLocation" x="1632.8" y="-485.30734632683664"/>
         </scene>
-        <!--Top Rated-->
-        <scene sceneID="Ylo-CZ-i7E">
-            <objects>
-                <viewController id="Ln1-iJ-qxV" customClass="FMTopRatedViewController" customModule="Flicks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="nc9-6g-KTZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="nge-4l-Yso"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Top Rated" id="teP-ZJ-tlu"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kzh-Zf-Wls" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2015" y="265"/>
-        </scene>
         <!--Now Playing-->
         <scene sceneID="tho-fn-2Yq">
             <objects>

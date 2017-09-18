@@ -9,43 +9,15 @@
 import UIKit
 
 class FMMoviesManager: NSObject {
+    
+    
     static let sharedManager : FMMoviesManager = {
         let instance = FMMoviesManager()
         return instance
     }()
 
-    //var imageURL:String
-    func fetchConfigurations() -> Void {
-        let url = URL(string:"https://api.themoviedb.org/3/configuration?api_key=39c77c9745fd06851e28fcf94062eeb2")
-        let request = URLRequest(url: url!)
-        let session = URLSession(
-            configuration: URLSessionConfiguration.default,
-            delegate:nil,
-            delegateQueue:OperationQueue.main
-        )
-        let task : URLSessionDataTask = session.dataTask(
-            with: request as URLRequest,
-            completionHandler: { (data, response, error) in
-                if let data = data {
-                    if let responseDictionary = try! JSONSerialization.jsonObject(
-                        with: data, options:[]) as? NSDictionary {
-                        if let imagesDictionary = responseDictionary["images"] as? NSDictionary
-                        {
-                            if let baseURL = imagesDictionary["base_url"] as? String{
-                                
-                                //self.imageURL = baseURL
-                            }
-                        }
-                        else
-                        {
-                            
-                        }
-                        print("responseDictionary: \(responseDictionary)")
-                    }
-                }
-        });
-        task.resume()
-    }
+    
+    
     func fetchNowPlayingMovies(completionHandler :  @escaping (_ movies : [FMMovie]?, NSError?)->Void){
         let moviesList = NSMutableArray.init()
         let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=39c77c9745fd06851e28fcf94062eeb2")
@@ -87,6 +59,8 @@ class FMMoviesManager: NSObject {
         task.resume()
     }
     
+    
+    
     func fetchTopRatedMovies(completionHandler :  @escaping (_ movies : [FMMovie]?, NSError?)->Void){
         let moviesList = NSMutableArray.init()
         let url = URL(string:"https://api.themoviedb.org/3/movie/top_rated?api_key=39c77c9745fd06851e28fcf94062eeb2")
@@ -127,4 +101,40 @@ class FMMoviesManager: NSObject {
         task.resume()
     }
     
+    
+    //var imageURL:String
+    /*
+     func fetchConfigurations() -> Void {
+     let url = URL(string:"https://api.themoviedb.org/3/configuration?api_key=39c77c9745fd06851e28fcf94062eeb2")
+     let request = URLRequest(url: url!)
+     let session = URLSession(
+     configuration: URLSessionConfiguration.default,
+     delegate:nil,
+     delegateQueue:OperationQueue.main
+     )
+     let task : URLSessionDataTask = session.dataTask(
+     with: request as URLRequest,
+     completionHandler: { (data, response, error) in
+     if let data = data {
+     if let responseDictionary = try! JSONSerialization.jsonObject(
+     with: data, options:[]) as? NSDictionary {
+     if let imagesDictionary = responseDictionary["images"] as? NSDictionary
+     {
+     if let baseURL = imagesDictionary["base_url"] as? String{
+     
+     //self.imageURL = baseURL
+     }
+     }
+     else
+     {
+     
+     }
+     print("responseDictionary: \(responseDictionary)")
+     }
+     }
+     });
+     task.resume()
+     }
+     
+     */
 }
