@@ -13,6 +13,9 @@ Completed user stories:
  * [x] Required: User sees loading state while waiting for movies API.
  * [x] Required: User sees an error message when there's a networking error.
  * [x] Required: User can pull to refresh the movie list.
+ 
+ The following **additional** features are implemented:
+ 
  * [x] Optional: Add a tab bar for Now Playing or Top Rated movies.
  * [x] Optional: Implement a UISegmentedControl to switch between a list view and a grid view.
  * [x] Optional: Add a search bar.
@@ -25,4 +28,9 @@ Notes:
 Added Autolayout for all the screens, maintained separated Model class for Movie instead of NSDictionary, Added network manager class. 
 
 
+Here's a walkthrough of implemented user stories:
+
+<img src='https://i.imgur.com/4G9KHDO.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
